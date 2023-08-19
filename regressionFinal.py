@@ -1,6 +1,4 @@
 import numpy as np
-import pandas
-from bokeh.plotting import figure, show
 from math import log10
 
 def logOrLinRegression(x, y, initial_w, initial_b, iterations, alpha, logistic, normalize):
