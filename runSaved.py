@@ -1,15 +1,26 @@
-import numpy as np
-import cv2, random
+import numpy as np, os
+import cv2 
 from regressionFinal import predict
 from model import HandDetector
+
+
+
 
 w = []
 b = 0
 mean = []
 std = []
 
+models = os.listdir("savedModels")
+print("SAVED MODELS . . . ")
+for model in models:
+    print(model)
 
-with open("numbers.txt", "r") as numbers:
+
+model = models[int(input("Choose a model: ")) - 1]
+
+
+with open("savedModels/"  + model, "r") as numbers:
     modelData = (numbers.read()).split(",")
     for val in modelData[0:14]:
         w.append(float(val))
@@ -55,20 +66,5 @@ def main():
 
             if key == ord("x"):
                 break
-                
-    while True:
-        frame = np.zeros((720,1280))
-        cv2.putText(frame,"CLICK S IF YOU WANT TO SAVE THE MODEL X IF YOU DONT", (5,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,0), 2)
-        cv2.imshow("Save", frame)
-        key = cv2.waitKey(1)
-        
-        if key == ord("s"):
-            with open(f"savedModels/model{random.randint(0,1000)}.txt", "w") as toWrite:
-                with open("numbers.txt", "r") as data:        
-                    toWrite.write(data.read())
-            break
 
-        if key == ord("x"):
-            break
-            
 main()
