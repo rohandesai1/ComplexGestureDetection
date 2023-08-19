@@ -3,37 +3,40 @@ import cv2, random
 from regressionFinal import predict
 from model import HandDetector
 
-w = []
-b = 0
-mean = []
-std = []
+def get_params():
+    w = []
+    b = 0
+    mean = []
+    std = []
 
 
-with open("numbers.txt", "r") as numbers:
-    modelData = (numbers.read()).split(",")
-    for val in modelData[0:14]:
-        w.append(float(val))
-    b = float(modelData[14])
+    with open("numbers.txt", "r") as numbers:
+        modelData = (numbers.read()).split(",")
+        for val in modelData[0:14]:
+            w.append(float(val))
+        b = float(modelData[14])
 
-    for val in modelData[15:29]:
-        mean.append(float(val))
-    
-    for val in modelData[29:43]:
-        std.append(float(val))
-             
+        for val in modelData[15:29]:
+            mean.append(float(val))
+        
+        for val in modelData[29:43]:
+            std.append(float(val))
+                
 
-w = np.asarray(w) 
+    w = np.asarray(w) 
 
-mean = np.asarray(mean)
+    mean = np.asarray(mean)
 
-std = np.asarray(std)
+    std = np.asarray(std)
+
+    return w, b, mean, std
 
 video = cv2.VideoCapture(0)
 
 
 def main():
     detector = HandDetector()
-
+    w, b, mean, std = get_params()
     while True:
             check, frame = video.read()
 
@@ -46,6 +49,9 @@ def main():
                 if prediction > 0.5:
                     no = ""
                 cv2.putText(frame, f'sign {no} detected {prediction}%', (200, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,0,0), 3)
+
+            cv2.putText(frame, "key X to close", (frame.shape[0] - 200, int((frame.shape[1])/2)), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 3)
+
                 #   finalX.append(detector.collectData())
                 #  finalY.append(1)
 
@@ -58,7 +64,7 @@ def main():
                 
     while True:
         frame = np.zeros((720,1280))
-        cv2.putText(frame,"CLICK S IF YOU WANT TO SAVE THE MODEL X IF YOU DONT", (5,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,0), 2)
+        cv2.putText(frame,"Click S if you want to save the model, X if you don't", (5,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,0), 2)
         cv2.imshow("Save", frame)
         key = cv2.waitKey(1)
         
@@ -70,5 +76,7 @@ def main():
 
         if key == ord("x"):
             break
-            
-main()
+
+
+if __name__ == "__main__":
+    main()
