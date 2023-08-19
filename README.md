@@ -2,7 +2,7 @@
 
 ## Introduction 
 
-  This project combines MediaPipe's advanced hand tracking, a custom-built regression model, and OpenCV's image processing to help users seamlessly train a model to recognize any gesture. This program extracts hundreds of ratios along a person's hand to extract examples/non-examples of a given gesture, and then feeds that data to a logistic regression model. 
+  This project combines MediaPipe's advanced hand tracking, a custom-built regression model, and OpenCV's image processing to help users seamlessly train a model to recognize any gesture. This is done by extracting hundreds of ratios along a person's hand to receive examples/non-examples of a given gesture, and then feeding that data to a logistic regression model. 
 
 ## Usage
 
