@@ -72,6 +72,7 @@ def main():
             with open(f"savedModels/model{random.randint(0,1000)}.txt", "w") as toWrite:
                 with open("numbers.txt", "r") as data:        
                     toWrite.write(data.read())
+            
             break
 
         if key == ord("x"):
