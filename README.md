@@ -7,7 +7,7 @@ This project combines MediaPipe's advanced hand tracking, a custom-built regress
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Full Code Breakdown](#code-breakdown)
-- [Explanation](
+- [Explanation](#explanation)
 
 ## Features
 
