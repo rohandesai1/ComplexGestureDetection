@@ -8,7 +8,7 @@ class HandDetector:
     def __init__ (self):
 
         self.landmarks = []
-        base_options = python.BaseOptions(model_asset_path='/Users/rohandesai/Downloads/hand_landmarker.task')
+        base_options = python.BaseOptions(model_asset_path='hand_landmarker.task')
         options = vision.HandLandmarkerOptions(base_options=base_options, num_hands=2)
         self.detector = vision.HandLandmarker.create_from_options(options)
 
@@ -75,20 +75,6 @@ class HandDetector:
             distances.append(distance)
         return distances
 
-
-    def get_slope(self, bodyPart1, bodyPart2): # slope between 2 body parts (used for upper body straightness detection)
-        if self.get_landmark(bodyPart1) != [] and self.get_landmark(bodyPart2) != []:
-            
-            x1, y1, z1 = self.get_landmark(bodyPart1)
-            x2, y2, z2 = self.get_landmark(bodyPart2)
-
-            
-            slope = (y1-y2)/(x1-x2) 
-            slope = int(slope) + ((z1-z2) * int(slope)) # multiply by slope so depth difference is proportional to slope
-            return slope
-            
-        else:
-            return 99999
     
     def collectData(self):
         finalSet = []

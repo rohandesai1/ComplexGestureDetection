@@ -17,12 +17,8 @@ def main():
         foundPose = detector.set_pose()
 
         if foundPose:
-            
                 finalX.append(detector.collectData())
                 finalY.append(0)
-
-             #   finalX.append(detector.collectData())
-              #  finalY.append(1)
 
         cv2.putText(frame, "PROVIDE NON EXAMPLES, PRESS X WHEN DONE", (200, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,0), 3)
         cv2.imshow("Camera", frame)
@@ -39,22 +35,13 @@ def main():
         foundPose = detector.set_pose()
 
         if foundPose:
-            
-                finalX.append(detector.collectData())
-                finalY.append(1)
-
-             #   finalX.append(detector.collectData())
-              #  finalY.append(1)
-
-
-
-            
+            finalX.append(detector.collectData())
+            finalY.append(1)
 
         cv2.putText(frame, "PROVIDE EXAMPLES, PRESS X WHEN DONE", (200, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,0), 3)
 
         cv2.imshow("Camera", frame)
         key = cv2.waitKey(1)
-
 
         if key == ord("x"):
             break
